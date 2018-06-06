@@ -29,7 +29,8 @@ class DashboardScreen extends Component {
 		const destinationTime = this.makeRow('OCT', '26', '1985', '01', '22');
 
 		return (
-			<View style={styles.container}>
+			<KeyboardAvoidingView enabled style={styles.container} behavior="position" contentContainerStyle={{flexGrow: 1}}>
+			{/* <View style={styles.container}> */}
 				<TimeRow title="last time departed" color={green}>
 					{lastTimeDeparted.map((item, key) =>
 						<TimeItem title={item.title} value={item.value} maxLength={item.maxLength} key={key} color={green} onUpdate={this.onUpdate}/>
@@ -48,7 +49,8 @@ class DashboardScreen extends Component {
 				<View style={{backgroundColor: 'red', height: 50}}>
 					<Text>Yo</Text>
 				</View>
-			</View>
+			{/* </View> */}
+			</KeyboardAvoidingView>
 		);
 	}
 }
