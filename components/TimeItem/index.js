@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
 import {Text, TextInput, View} from 'react-native';
 
-import { styles } from './styles';
+import { ORIENTATION } from '../../helpers/constants';
+import { getOrientation } from '../../helpers/helpers';
+import { landscapeStyles, portraitStyles} from './styles';
 
 export default class TimeRow extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {orientation: getOrientation()};
+	}
+
+	onLayout = (e) => {
+		this.setState({orientation: getOrientation()});
 	}
 
 	update = (val) => {
 		this.props.onUpdate(val, this.props.title);
 	}
+
+	
 	
 	render() {
 		const {color, title, value, maxLength} = this.props;
+		const styles = (this.state.orientation === ORIENTATION.LANDSCAPE) ? landscapeStyles : portraitStyles;
 
 		return (
-			<View style={styles.container}>
+			<View style={styles.container} onLayout={this.onLayout}>
 				<TextInput onChangeText={this.update} 
 					maxLength={maxLength}
 					selectTextOnFocus={true} 

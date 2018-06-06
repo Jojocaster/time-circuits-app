@@ -1,25 +1,25 @@
 import { StyleSheet } from 'react-native';
+import { baseStyles } from './styles.base';
 
-export const styles = StyleSheet.create({
-  container: {
-		alignContent: 'center',
-		flexWrap: 'wrap',
-		justifyContent: 'center',
-		padding: 10,
+export const portraitStyles = StyleSheet.create({...baseStyles, ...{
+	container: {
+		...baseStyles.container,
+		flexDirection: 'row',
 		width: '33%'
-  },
-	title: {
-		color: 'white',
-		fontFamily: 'Roboto',
-		fontSize: 10,
-		fontWeight: 'bold',
-		textAlign: 'center',
-		width: '100%'
-	},
-	textInput: {
-		flexWrap: 'wrap',
-		fontSize: 30, 
-		fontWeight: 'bold', 
-		textAlign: 'center', 
 	}
-});
+}});
+
+export const landscapeStyles = StyleSheet.create({...baseStyles, ...{
+	container: {
+		...baseStyles.container,
+		padding: 10,
+		width: '16%'
+	},
+	title: {
+		...baseStyles.title,
+		flex: 1,
+		fontSize: 10,
+		fontFamily: 'Roboto',
+		marginTop: -5,
+	},
+}});

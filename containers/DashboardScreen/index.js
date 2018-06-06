@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {Text, View} from 'react-native';
+import {Dimensions,KeyboardAvoidingView, Text, View} from 'react-native';
 
 import {styles} from './styles';
 import TimeRow from '../../components/TimeRow';
 import TimeItem from '../../components/TimeItem';
+import { ScrollView } from 'react-native-gesture-handler';
 
 class DashboardScreen extends Component {
 
