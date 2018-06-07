@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect, Provider } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
 import HomeScreen from './containers/HomeScreen';
 import DashboardScreen from './containers/DashboardScreen';
+
+import { store } from './store';
 
 const RootStack = createStackNavigator({
   Home: HomeScreen,
@@ -18,7 +21,9 @@ const RootStack = createStackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <RootStack />
+      <Provider store={store}>
+        <RootStack />
+      </Provider>
     );
   }
 }
