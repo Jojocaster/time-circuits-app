@@ -4,15 +4,15 @@ import { Text, View } from 'react-native';
 import { styles } from './styles';
 import Button from '../../components/Button/index';
 
-type Props = {
-  navigation: any
-};
+// type Props = {
+//   navigation: any
+// };
 
-type State = {
-  pressed: boolean
-};
+// type State = {
+//   pressed: boolean
+// };
 
-export default class HomeScreen extends React.Component<Props, State> {
+export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = { pressed: false };

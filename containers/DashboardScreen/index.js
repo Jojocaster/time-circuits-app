@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { KeyboardAvoidingView, Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import { styles } from './styles';
+import { GREEN, RED, YELLOW } from '../../helpers/constants';
 import TimeRow from '../../components/TimeRow';
 import TimeItem from '../../components/TimeItem';
-import { ScrollView } from 'react-native-gesture-handler';
-import { GREEN, RED, YELLOW } from '../../helpers/constants';
 
 class DashboardScreen extends Component {
   makeRow(month, day, year, hour, min) {

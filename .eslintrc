@@ -8,6 +8,8 @@
     "semi": 0,
     "prettier/prettier": "error",
     "react/jsx-uses-vars": "error",
-    "react/jsx-max-props-per-line": [0, { "when": "never" }]
+    "react/jsx-max-props-per-line": [0, { "when": "never" }],
+    "newline-before-return": "error",
+    "newline-after-var": "error"
   }
 }

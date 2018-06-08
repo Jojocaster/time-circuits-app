@@ -1,6 +1,10 @@
-import { combineReducers ,createStore } from 'redux';
-import timeRows from '../containers/DashboardScreen/reducers';
+import { combineReducers, createStore } from 'redux';
+import { timeCircuits } from '../containers/DashboardScreen/reducer';
 
-const reducers = combineReducers({timeRows})
+const reducers = combineReducers({ timeCircuits });
 
 export const store = createStore(reducers);
+console.log(store.getState());
+store.subscribe(() => {
+  console.log(store.getState());
+});
