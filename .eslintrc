@@ -1,13 +1,13 @@
 {
-    "extends": [
-        "standard",
-        "plugin:react/recommended"
-    ],
-    "parser": "babel-eslint",
-    "rules": {
-        "padded-blocks": "off",
-        "space-before-function-paren": 0,
-        "semi": 0,
-        "react/jsx-uses-vars": "error"
-    }
+  "extends": ["standard", "plugin:react/recommended"],
+  "plugins": ["prettier"],
+  "parser": "babel-eslint",
+  "rules": {
+    "padded-blocks": "off",
+    "space-before-function-paren": 0,
+    "semi": 0,
+    "prettier/prettier": "error",
+    "react/jsx-uses-vars": "error",
+    "react/jsx-max-props-per-line": [0, { "when": "never" }]
+  }
 }

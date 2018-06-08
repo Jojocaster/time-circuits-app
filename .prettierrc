@@ -1,0 +1,4 @@
+singleQuote: true
+arrowParens: "always"
+jsxBracketSameLine: true
+print-width: 150

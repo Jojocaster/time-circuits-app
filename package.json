@@ -1,18 +1,21 @@
 {
-  "name": "TimeCircuitsApp",
+  "name": "time-circuits-app",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
     "@types/react": "^16.3.16",
     "@types/react-native": "^0.55.17",
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-react": "^7.9.1",
     "eslint-plugin-standard": "^3.1.0",
     "jest-expo": "~27.0.0",
+    "prettier": "^1.13.4",
     "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1"
   },
