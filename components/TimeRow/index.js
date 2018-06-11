@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { KeyboardAvoidingView, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { styles } from './styles';
 import TimeDisplay from '../TimeDisplay';
+import { getDimensions } from '../../helpers/helpers';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,12 +14,31 @@ const mapStateToProps = (state) => {
 };
 
 class TimeRow extends Component {
+  constructor(props) {
+    super(props);
+    const { height, width } = getDimensions();
+
+    this.state = { height, width };
+  }
+
+  onLayout = () => {
+    const { height, width } = getDimensions();
+
+    this.setState({ height, width });
+  };
+
   render() {
+    const { width } = this.state;
     const { color, displays, id, label } = this.props;
     const dsplys = displays.filter((dp) => dp.rId === id);
 
     return (
-      <View style={[styles.container]}>
+      <KeyboardAvoidingView
+        enabled
+        onLayout={this.onLayout}
+        style={[styles.container, { width }]}
+        behavior="position"
+        contentContainerStyle={{ flexGrow: 1 }}>
         <View style={styles.header}>
           <Text style={styles.label}>{label.toUpperCase()}</Text>
         </View>
@@ -33,7 +53,7 @@ class TimeRow extends Component {
             />
           ))}
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

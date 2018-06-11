@@ -23,7 +23,10 @@ export default class TimeDisplay extends Component {
 
   render() {
     const { color, title, value, maxLength } = this.props;
-    const styles = this.state.orientation === ORIENTATION.LANDSCAPE ? landscapeStyles : portraitStyles;
+    const styles =
+      this.state.orientation === ORIENTATION.LANDSCAPE
+        ? landscapeStyles
+        : portraitStyles;
 
     return (
       <View style={styles.container} onLayout={this.onLayout}>
@@ -45,6 +48,6 @@ TimeDisplay.propTypes = {
   color: PropTypes.string.isRequired,
   onUpdate: PropTypes.func,
   title: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.any.isRequired,
   maxLength: PropTypes.number
 };

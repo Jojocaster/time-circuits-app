@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { KeyboardAvoidingView, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 // import { ScrollView } from 'react-native-gesture-handler';
 import PropTypes from 'prop-types';
 
@@ -35,24 +35,21 @@ class DashboardScreen extends Component {
     const { rows } = this.props;
 
     return (
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <KeyboardAvoidingView
-          enabled
-          style={styles.container}
-          behavior="position"
-          contentContainerStyle={{ flexGrow: 1 }}>
-          {rows.map((row) => (
-            <TimeRow
-              key={row.id}
-              id={row.id}
-              label={row.label}
-              color={row.color}
-            />
-          ))}
-          <View style={{ backgroundColor: 'red', height: 50 }}>
-            <Text>Yo</Text>
-          </View>
-        </KeyboardAvoidingView>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        horizontal={true}
+        pagingEnabled={true}>
+        {rows.map((row) => (
+          <TimeRow
+            key={row.id}
+            id={row.id}
+            label={row.label}
+            color={row.color}
+          />
+        ))}
+        <View style={{ backgroundColor: 'red', height: 50 }}>
+          <Text>Yo</Text>
+        </View>
       </ScrollView>
     );
   }

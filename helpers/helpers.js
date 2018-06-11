@@ -11,6 +11,13 @@ export const getOrientation = () => {
   return height > width ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE;
 };
 
+export const getDimensions = () => {
+  return {
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width
+  };
+};
+
 export const generateDisplays = () => {
   const items = [];
 

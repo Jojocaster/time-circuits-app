@@ -4,8 +4,7 @@ import { Constants } from 'expo';
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: '#282a36',
-    paddingTop: Constants.statusBarHeight,
-    flex: 1
+    paddingTop: Constants.statusBarHeight
   },
   button: {
     borderColor: '#fff',
