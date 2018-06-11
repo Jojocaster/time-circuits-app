@@ -29,42 +29,17 @@ class DashboardScreen extends Component {
 
     return (
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <KeyboardAvoidingView
-          enabled
-          style={styles.container}
-          behavior="position"
-          contentContainerStyle={{ flexGrow: 1 }}>
+        <KeyboardAvoidingView enabled style={styles.container} behavior="position" contentContainerStyle={{ flexGrow: 1 }}>
           <TimeRow title="last time departed" color={GREEN}>
             {lastTimeDeparted.map((item, key) => (
-              <TimeItem
-                title={item.title}
-                value={item.value}
-                maxLength={item.maxLength}
-                key={key}
-                color={GREEN}
-                onUpdate={this.onUpdate}
-              />
+              <TimeItem title={item.title} value={item.value} maxLength={item.maxLength} key={key} color={GREEN} onUpdate={this.onUpdate} />
             ))}
           </TimeRow>
           <TimeRow title="present time" color={YELLOW}>
-            {presentTime.map((item, key) => (
-              <TimeItem
-                title={item.title}
-                value={item.value}
-                key={key}
-                color={YELLOW}
-              />
-            ))}
+            {presentTime.map((item, key) => <TimeItem title={item.title} value={item.value} key={key} color={YELLOW} />)}
           </TimeRow>
           <TimeRow title="destination time" color={RED}>
-            {destinationTime.map((item, key) => (
-              <TimeItem
-                title={item.title}
-                value={item.value}
-                key={key}
-                color={RED}
-              />
-            ))}
+            {destinationTime.map((item, key) => <TimeItem title={item.title} value={item.value} key={key} color={RED} />)}
           </TimeRow>
           <View style={{ backgroundColor: 'red', height: 50 }}>
             <Text>Yo</Text>

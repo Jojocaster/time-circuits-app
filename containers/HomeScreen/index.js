@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import PropTypes from 'prop-types';
 
 import { styles } from './styles';
 import Button from '../../components/Button/index';
@@ -28,12 +29,16 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>
-          Open up App.js to start working on your app!
-        </Text>
+        <Text style={styles.text}>Open up App.js to start working on your app!</Text>
         <Text>Shake your phone to open the developer menu.</Text>
         <Button onPress={this.onPress}>{pressed}</Button>
       </View>
     );
   }
 }
+
+HomeScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired
+  }).isRequired
+};

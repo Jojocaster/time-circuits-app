@@ -1,24 +1,13 @@
 // @flow
 import React, { Component } from 'react';
 import { Text, TextInput, View } from 'react-native';
+import PropTypes from 'prop-types';
 
 import { ORIENTATION } from '../../helpers/constants';
 import { getOrientation } from '../../helpers/helpers';
 import { landscapeStyles, portraitStyles } from './styles';
 
-type Props = {
-  color: string,
-  onUpdate: (val: string, title: string) => void,
-  title: string,
-  value: string,
-  maxLength: number
-};
-
-type State = {
-  orientation: 'string'
-};
-
-export default class TimeRow extends Component<Props, State> {
+export default class TimeRow extends Component {
   constructor(props) {
     super(props);
     this.state = { orientation: getOrientation() };
@@ -34,10 +23,7 @@ export default class TimeRow extends Component<Props, State> {
 
   render() {
     const { color, title, value, maxLength } = this.props;
-    const styles =
-      this.state.orientation === ORIENTATION.LANDSCAPE
-        ? landscapeStyles
-        : portraitStyles;
+    const styles = this.state.orientation === ORIENTATION.LANDSCAPE ? landscapeStyles : portraitStyles;
 
     return (
       <View style={styles.container} onLayout={this.onLayout}>
@@ -54,3 +40,11 @@ export default class TimeRow extends Component<Props, State> {
     );
   }
 }
+
+TimeRow.propTypes = {
+  color: PropTypes.string.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  maxLength: PropTypes.number.isRequired
+};
