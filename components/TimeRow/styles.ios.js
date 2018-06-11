@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     top: 10,
     zIndex: 1
   },
-  title: {
+  label: {
     backgroundColor: '#282a36',
     color: 'white',
     fontWeight: 'bold',

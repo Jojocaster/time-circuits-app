@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-
 import { EDIT_TIME } from './actions';
 import { generateDisplays } from '../../helpers/helpers';
 import { GREEN, RED, YELLOW } from '../../helpers/constants';
@@ -12,14 +10,14 @@ const defaultState = [
 
 const defaultDisplays = generateDisplays();
 
-const rows = (state = defaultState, action) => {
+export const rows = (state = defaultState, action) => {
   switch (action) {
     default:
       return state;
   }
 };
 
-const displays = (state = defaultDisplays, action) => {
+export const displays = (state = defaultDisplays, action) => {
   switch (action) {
     case EDIT_TIME:
       const { item } = action;
@@ -33,8 +31,3 @@ const displays = (state = defaultDisplays, action) => {
       return state;
   }
 };
-
-export const timeCircuits = combineReducers({
-  displays,
-  rows
-});

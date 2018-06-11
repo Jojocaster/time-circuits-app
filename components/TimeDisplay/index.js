@@ -7,7 +7,7 @@ import { ORIENTATION } from '../../helpers/constants';
 import { getOrientation } from '../../helpers/helpers';
 import { landscapeStyles, portraitStyles } from './styles';
 
-export default class TimeRow extends Component {
+export default class TimeDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = { orientation: getOrientation() };
@@ -41,10 +41,10 @@ export default class TimeRow extends Component {
   }
 }
 
-TimeRow.propTypes = {
+TimeDisplay.propTypes = {
   color: PropTypes.string.isRequired,
-  onUpdate: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func,
   title: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  maxLength: PropTypes.number.isRequired
+  maxLength: PropTypes.number
 };

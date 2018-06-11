@@ -1,19 +1,38 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { styles } from './styles';
+import TimeDisplay from '../TimeDisplay';
 
-export default class TimeRow extends Component {
+const mapStateToProps = (state) => {
+  return {
+    displays: state.displays
+  };
+};
+
+class TimeRow extends Component {
   render() {
-    const { color, title, children } = this.props;
+    const { color, displays, id, label } = this.props;
+    const dsplys = displays.filter((dp) => dp.rId === id);
 
     return (
       <View style={[styles.container]}>
         <View style={styles.header}>
-          <Text style={styles.title}>{title.toUpperCase()}</Text>
+          <Text style={styles.label}>{label.toUpperCase()}</Text>
         </View>
-        <View style={[styles.inner, { borderColor: color }]}>{children}</View>
+        <View style={[styles.inner, { borderColor: color }]}>
+          {dsplys.map((dp) => (
+            <TimeDisplay
+              color={color}
+              key={dp.title}
+              value={dp.value}
+              title={dp.title}
+              maxLength={dp.maxLength}
+            />
+          ))}
+        </View>
       </View>
     );
   }
@@ -21,6 +40,9 @@ export default class TimeRow extends Component {
 
 TimeRow.propTypes = {
   color: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired
+  displays: PropTypes.array.isRequired,
+  id: PropTypes.number.isRequired,
+  label: PropTypes.string.isRequired
 };
+
+export default connect(mapStateToProps)(TimeRow);
