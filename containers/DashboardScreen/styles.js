@@ -3,6 +3,7 @@ import { Constants } from 'expo';
 
 export const styles = StyleSheet.create({
   container: {
+    alignItems: 'center',
     backgroundColor: '#282a36',
     paddingTop: Constants.statusBarHeight
   },

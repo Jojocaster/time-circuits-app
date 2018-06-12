@@ -1,7 +1,7 @@
 export const baseStyles = {
   container: {
     flex: 1,
-    height: '100%',
+    height: '50%',
     width: '100%'
   },
   header: {
