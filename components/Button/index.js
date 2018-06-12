@@ -10,7 +10,10 @@ export default class Button extends Component {
 
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={onPress} style={styles.button} underlayColor={'rgba(255, 255, 255, .3)'}>
+        <TouchableHighlight
+          onPress={onPress}
+          style={styles.button}
+          underlayColor={'rgba(255, 255, 255, .3)'}>
           <Text style={styles.text}>{children}</Text>
         </TouchableHighlight>
       </View>
