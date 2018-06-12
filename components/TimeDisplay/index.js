@@ -19,6 +19,10 @@ export default class TimeDisplay extends Component {
     this.setState({ orientation: getOrientation() });
   };
 
+  onChange = (val) => {
+    console.log(val);
+  };
+
   update = (val) => {
     this.props.onUpdate(val, this.props.title);
   };
@@ -31,7 +35,7 @@ export default class TimeDisplay extends Component {
         : portraitStyles;
 
     if (isPeriod) {
-      return <PeriodDisplay value={value} />;
+      return <PeriodDisplay onChange={this.onChange} value={value} />;
     }
 
     return (
