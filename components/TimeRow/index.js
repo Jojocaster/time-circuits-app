@@ -47,9 +47,10 @@ class TimeRow extends Component {
             <TimeDisplay
               color={color}
               key={dp.title}
-              value={dp.value}
-              title={dp.title}
+              isPeriod={dp.isPeriod}
               maxLength={dp.maxLength}
+              title={dp.title}
+              value={dp.value}
             />
           ))}
         </View>

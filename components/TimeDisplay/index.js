@@ -7,6 +7,8 @@ import { ORIENTATION } from '../../helpers/constants';
 import { getOrientation } from '../../helpers/helpers';
 import { landscapeStyles, portraitStyles } from './styles';
 
+import PeriodDisplay from '../PeriodDisplay';
+
 export default class TimeDisplay extends Component {
   constructor(props) {
     super(props);
@@ -22,11 +24,15 @@ export default class TimeDisplay extends Component {
   };
 
   render() {
-    const { color, title, value, maxLength } = this.props;
+    const { color, isPeriod, title, value, maxLength } = this.props;
     const styles =
       this.state.orientation === ORIENTATION.LANDSCAPE
         ? landscapeStyles
         : portraitStyles;
+
+    if (isPeriod) {
+      return <PeriodDisplay value={value} />;
+    }
 
     return (
       <View style={styles.container} onLayout={this.onLayout}>
@@ -47,6 +53,7 @@ export default class TimeDisplay extends Component {
 TimeDisplay.propTypes = {
   color: PropTypes.string.isRequired,
   onUpdate: PropTypes.func,
+  isPeriod: PropTypes.bool,
   title: PropTypes.string.isRequired,
   value: PropTypes.any.isRequired,
   maxLength: PropTypes.number
