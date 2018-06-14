@@ -18,7 +18,7 @@ class DashboardScreen extends Component {
     const { rows } = this.props;
 
     return (
-      <Carousel style={styles.container}>
+      <Carousel style={styles.container} pagination={true}>
         {rows.map((row) => (
           <TimeRow
             key={row.id}
@@ -27,10 +27,10 @@ class DashboardScreen extends Component {
             color={row.color}
           />
         ))}
-        {/* <View style={{ backgroundColor: 'red', height: 50 }}>
-          <Text>Yo</Text>
-        </View> */}
       </Carousel>
+      // <View style={{ backgroundColor: 'red', height: 50 }}>
+      //   <Text>Yo</Text>
+      // </View>
     );
   }
 }

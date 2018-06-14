@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
+
+import CarouselIndicator from '../CarouselIndicator';
 
 class Carousel extends Component {
-  scroll = (event) => {
-    console.log(event.nativeEvent.contentOffset.x);
+  onScroll = (event) => {
+    this.offsetX = event.nativeEvent.contentOffset.x;
   };
 
   render() {
-    const { children, style } = this.props;
+    const { children, pagination, style } = this.props;
 
     return (
-      <ScrollView
-        contentContainerStyle={style}
-        horizontal={true}
-        onScroll={this.scroll}
-        scrollEventThrottle={16}
-        pagingEnabled={true}>
-        {children}
-      </ScrollView>
+      <View style={{ flex: 1 }}>
+        <ScrollView
+          contentContainerStyle={style}
+          horizontal={true}
+          onScroll={this.onScroll}
+          scrollEventThrottle={16}
+          pagingEnabled={true}>
+          {children}
+        </ScrollView>
+        {pagination && <CarouselIndicator items={children} />}
+      </View>
     );
   }
 }
 
 Carousel.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  pagination: PropTypes.bool,
   style: PropTypes.any
 };
 
