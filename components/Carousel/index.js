@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
+import { ScrollView, View, Animated } from 'react-native';
 import PropTypes from 'prop-types';
-import { ScrollView, View } from 'react-native';
 
 import CarouselIndicator from '../CarouselIndicator';
+import { getDimensions } from '../../helpers/helpers';
 
 class Carousel extends Component {
-  onScroll = (event) => {
-    this.offsetX = event.nativeEvent.contentOffset.x;
-  };
+  offsetX = new Animated.Value(0);
 
   render() {
     const { children, pagination, style } = this.props;
+    let position = Animated.divide(this.offsetX, getDimensions().width);
 
     return (
       <View style={{ flex: 1 }}>
         <ScrollView
           contentContainerStyle={style}
           horizontal={true}
-          onScroll={this.onScroll}
+          onScroll={Animated.event([
+            { nativeEvent: { contentOffset: { x: this.offsetX } } }
+          ])}
           scrollEventThrottle={16}
           pagingEnabled={true}>
           {children}
         </ScrollView>
-        {pagination && <CarouselIndicator items={children} />}
+
+        {pagination && (
+          <CarouselIndicator items={children} position={position} />
+        )}
       </View>
     );
   }
