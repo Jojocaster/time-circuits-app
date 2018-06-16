@@ -1,5 +1,5 @@
 import { GREEN, RED, YELLOW, OUT_OF_SYNC } from '../../helpers/constants';
-import { EDIT_DISPLAY } from '.../TimeRow/actions';
+import { EDIT_DISPLAY } from '../TimeRow/actions';
 
 const defaultState = [
   { id: 0, label: 'last time departed', color: GREEN, sync: OUT_OF_SYNC },

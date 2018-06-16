@@ -7,7 +7,7 @@ import { styles } from './styles';
 import { getDimensions } from '../../helpers/helpers';
 import { updateDisplay } from './actions';
 
-import TimeDisplay from '../TimeDisplay';
+import TimeDisplay from '../../components/TimeDisplay';
 
 const mapStateToProps = (state) => {
   return {
