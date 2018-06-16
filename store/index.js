@@ -1,5 +1,6 @@
 import { combineReducers, createStore } from 'redux';
-import { rows, displays } from '../containers/DashboardScreen/reducer';
+import { rows } from '../containers/DashboardScreen/reducer';
+import { displays } from '../components/TimeRow/reducer';
 
 const reducers = combineReducers({ rows, displays });
 

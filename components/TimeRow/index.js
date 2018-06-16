@@ -1,15 +1,25 @@
-import React, { Component } from 'react';
-import { KeyboardAvoidingView, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import { connect, dispatch } from 'react-redux';
+import { KeyboardAvoidingView, Text, View } from 'react-native';
 
 import { styles } from './styles';
-import TimeDisplay from '../TimeDisplay';
 import { getDimensions } from '../../helpers/helpers';
+import { updateDisplay } from './actions';
+
+import TimeDisplay from '../TimeDisplay';
 
 const mapStateToProps = (state) => {
   return {
     displays: state.displays
+  };
+};
+
+const mapDispatchToProps = () => {
+  return {
+    updateDisplay: (display) => {
+      dispatch(updateDisplay(display));
+    }
   };
 };
 
@@ -28,6 +38,7 @@ class TimeRow extends Component {
   };
 
   render() {
+    console.log(this.props);
     const { width } = this.state;
     const { color, displays, id, label } = this.props;
     const dsplys = displays.filter((dp) => dp.rId === id);
@@ -45,6 +56,7 @@ class TimeRow extends Component {
         <View style={[styles.inner, { borderColor: color }]}>
           {dsplys.map((dp) => (
             <TimeDisplay
+              onUpdate={this.updateDisplay}
               color={color}
               key={dp.title}
               isPeriod={dp.isPeriod}
@@ -66,4 +78,7 @@ TimeRow.propTypes = {
   label: PropTypes.string.isRequired
 };
 
-export default connect(mapStateToProps)(TimeRow);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TimeRow);

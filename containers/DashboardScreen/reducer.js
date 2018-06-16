@@ -1,31 +1,25 @@
-import { EDIT_TIME } from './actions';
-import { generateDisplays } from '../../helpers/helpers';
-import { GREEN, RED, YELLOW } from '../../helpers/constants';
+import { GREEN, RED, YELLOW, OUT_OF_SYNC } from '../../helpers/constants';
+import { EDIT_DISPLAY } from '../../components/TimeRow/actions';
 
 const defaultState = [
-  { id: 0, label: 'last time departed', color: GREEN },
-  { id: 1, label: 'present time', color: YELLOW },
-  { id: 2, label: 'destination time', color: RED }
+  { id: 0, label: 'last time departed', color: GREEN, sync: OUT_OF_SYNC },
+  { id: 1, label: 'present time', color: YELLOW, sync: OUT_OF_SYNC },
+  { id: 2, label: 'destination time', color: RED, sync: OUT_OF_SYNC }
 ];
-
-const defaultDisplays = generateDisplays();
 
 export const rows = (state = defaultState, action) => {
   switch (action) {
-    default:
-      return state;
-  }
-};
+    case EDIT_DISPLAY:
+      const { rId } = action.row;
 
-export const displays = (state = defaultDisplays, action) => {
-  switch (action) {
-    case EDIT_TIME:
-      const { item } = action;
-
-      return state.map(({ rId, title }) => {
-        if (title === item.title && rId === item.rId) {
-          return item;
-        }
+      return Object.assign({}, state, {
+        rows: state.rows.map((row) => {
+          if (row.id === rId) {
+            return Object.assign({}, row, {
+              sync: OUT_OF_SYNC
+            });
+          }
+        })
       });
     default:
       return state;

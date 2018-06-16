@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 const label = {
-  color: 'rgba(255, 255, 255, .4)',
-  fontSize: 12,
+  color: 'white',
+  fontSize: 14,
   fontWeight: 'bold',
   margin: 2,
   textAlign: 'center',
