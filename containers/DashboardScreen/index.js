@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { styles } from './styles';
 
 import Carousel from '../../components/Carousel';
-import TimeRow from '../../components/TimeRow';
+import TimeRow from '.../TimeRow';
 
 const mapStateToProps = (state) => {
   return {

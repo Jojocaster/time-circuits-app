@@ -4,7 +4,7 @@ const label = {
   color: 'white',
   fontSize: 14,
   fontWeight: 'bold',
-  margin: 2,
+  margin: 5,
   textAlign: 'center',
   width: '100%'
 };

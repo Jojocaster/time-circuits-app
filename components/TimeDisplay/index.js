@@ -19,29 +19,35 @@ export default class TimeDisplay extends Component {
     this.setState({ orientation: getOrientation() });
   };
 
-  onChange = (val) => {
-    console.log(val);
-  };
+  onUpdate(val) {
+    const { rId, title } = this.props;
+    const display = { rId, title, value: val };
 
-  update = (val) => {
-    this.props.onUpdate(val, this.props.title);
-  };
+    this.props.onUpdate(display);
+  }
 
   render() {
-    const { color, isPeriod, title, value, maxLength } = this.props;
+    const { color, isPeriod, rId, title, value, maxLength } = this.props;
     const styles =
       this.state.orientation === ORIENTATION.LANDSCAPE
         ? landscapeStyles
         : portraitStyles;
 
     if (isPeriod) {
-      return <PeriodDisplay onChange={this.onChange} value={value} />;
+      return (
+        <PeriodDisplay
+          onUpdate={(val) => this.onUpdate(val)}
+          rId={rId}
+          title={title}
+          value={value}
+        />
+      );
     }
 
     return (
       <View style={styles.container} onLayout={this.onLayout}>
         <TextInput
-          onChangeText={this.update}
+          onChangeText={(val) => this.onUpdate(val)}
           maxLength={maxLength}
           selectTextOnFocus={true}
           underlineColorAndroid="rgba(0, 0, 0, 0)"
@@ -58,7 +64,8 @@ TimeDisplay.propTypes = {
   color: PropTypes.string.isRequired,
   onUpdate: PropTypes.func,
   isPeriod: PropTypes.bool,
+  maxLength: PropTypes.number,
+  rId: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  value: PropTypes.any.isRequired,
-  maxLength: PropTypes.number
+  value: PropTypes.any.isRequired
 };

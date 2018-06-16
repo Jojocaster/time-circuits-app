@@ -6,31 +6,26 @@ import { styles } from './styles';
 import { AM, PM } from '../../helpers/constants';
 
 class PeriodDisplay extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { val: 1 };
-    this.amValue = new Animated.Value(this.state.val === AM ? 1 : 0);
-    this.pmValue = new Animated.Value(this.state.val === PM ? 1 : 0);
-  }
+  amValue = new Animated.Value(this.props.value === AM ? 1 : 0);
+  pmValue = new Animated.Value(this.props.value === PM ? 1 : 0);
 
-  test(val) {
-    this.setState({ val: val });
+  update(val) {
+    this.props.onUpdate(val);
   }
 
   componentDidUpdate(newProp) {
     Animated.timing(this.amValue, {
-      toValue: this.state.val === AM ? 1 : 0,
+      toValue: this.props.value === AM ? 1 : 0,
       duration: 200
     }).start();
 
     Animated.timing(this.pmValue, {
-      toValue: this.state.val === PM ? 1 : 0,
+      toValue: this.props.value === PM ? 1 : 0,
       duration: 200
     }).start();
   }
-  render() {
-    const { value } = this.props;
 
+  render() {
     const amStyle = {
       opacity: this.amValue.interpolate({
         inputRange: [0, 1],
@@ -64,12 +59,12 @@ class PeriodDisplay extends Component {
     return (
       <View style={styles.container}>
         <Animated.Text
-          onPress={() => this.test(AM)}
+          onPress={() => this.update(AM)}
           style={[styles.label, amStyle]}>
           AM
         </Animated.Text>
         <Animated.Text
-          onPress={() => this.test(PM)}
+          onPress={() => this.update(PM)}
           style={[styles.label, pmStyle]}>
           PM
         </Animated.Text>
@@ -79,7 +74,9 @@ class PeriodDisplay extends Component {
 }
 
 PeriodDisplay.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  rId: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired
 };
 

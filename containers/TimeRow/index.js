@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { connect, dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { KeyboardAvoidingView, Text, View } from 'react-native';
 
 import { styles } from './styles';
@@ -15,13 +15,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = () => {
-  return {
-    updateDisplay: (display) => {
-      dispatch(updateDisplay(display));
-    }
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  update: (display) => {
+    dispatch(updateDisplay(display));
+  }
+});
 
 class TimeRow extends Component {
   constructor(props) {
@@ -38,7 +36,6 @@ class TimeRow extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { width } = this.state;
     const { color, displays, id, label } = this.props;
     const dsplys = displays.filter((dp) => dp.rId === id);
@@ -56,11 +53,12 @@ class TimeRow extends Component {
         <View style={[styles.inner, { borderColor: color }]}>
           {dsplys.map((dp) => (
             <TimeDisplay
-              onUpdate={this.updateDisplay}
+              onUpdate={(display) => this.props.update(display)}
               color={color}
               key={dp.title}
               isPeriod={dp.isPeriod}
               maxLength={dp.maxLength}
+              rId={dp.rId}
               title={dp.title}
               value={dp.value}
             />
@@ -75,7 +73,8 @@ TimeRow.propTypes = {
   color: PropTypes.string.isRequired,
   displays: PropTypes.array.isRequired,
   id: PropTypes.number.isRequired,
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
+  update: PropTypes.func.isRequired
 };
 
 export default connect(
