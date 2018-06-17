@@ -8,4 +8,8 @@ export const ORIENTATION = {
 };
 
 export const [AM, PM] = [1, 2];
-export const [OUT_OF_SYNC, SYNCING, IN_SYNC] = [0, 1, 2];
+export const [OUT_OF_SYNC, SYNCING, IN_SYNC] = [
+  'OUT OF SYNC',
+  'SYNCING ...',
+  'IN SYNC'
+];

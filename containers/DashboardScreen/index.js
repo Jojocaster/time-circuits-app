@@ -7,12 +7,6 @@ import { styles } from './styles';
 import Carousel from '../../components/Carousel';
 import TimeRow from '../TimeRow';
 
-const mapStateToProps = (state) => {
-  return {
-    rows: state.rows
-  };
-};
-
 class DashboardScreen extends Component {
   render() {
     const { rows } = this.props;
@@ -21,16 +15,14 @@ class DashboardScreen extends Component {
       <Carousel style={styles.container} pagination={true}>
         {rows.map((row) => (
           <TimeRow
+            color={row.color}
             key={row.id}
             id={row.id}
             label={row.label}
-            color={row.color}
+            sync={row.sync}
           />
         ))}
       </Carousel>
-      // <View style={{ backgroundColor: 'red', height: 50 }}>
-      //   <Text>Yo</Text>
-      // </View>
     );
   }
 }
@@ -43,6 +35,12 @@ DashboardScreen.propTypes = {
       color: PropTypes.string.isRequired
     })
   )
+};
+
+const mapStateToProps = (state) => {
+  return {
+    rows: state.rows
+  };
 };
 
 export default connect(mapStateToProps)(DashboardScreen);

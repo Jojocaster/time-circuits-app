@@ -8,18 +8,7 @@ import { getDimensions } from '../../helpers/helpers';
 import { updateDisplay } from './actions';
 
 import TimeDisplay from '../../components/TimeDisplay';
-
-const mapStateToProps = (state) => {
-  return {
-    displays: state.displays
-  };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  update: (display) => {
-    dispatch(updateDisplay(display));
-  }
-});
+import { TimeControls } from '../../components/TimeControls';
 
 class TimeRow extends Component {
   constructor(props) {
@@ -35,9 +24,13 @@ class TimeRow extends Component {
     this.setState({ height, width });
   };
 
+  onSave(row) {
+    console.log(row);
+  }
+
   render() {
     const { width } = this.state;
-    const { color, displays, id, label } = this.props;
+    const { color, displays, id, label, sync } = this.props;
     const dsplys = displays.filter((dp) => dp.rId === id);
 
     return (
@@ -64,6 +57,7 @@ class TimeRow extends Component {
             />
           ))}
         </View>
+        <TimeControls sync={sync} onSave={(row) => this.onSave(row)} />
       </KeyboardAvoidingView>
     );
   }
@@ -74,8 +68,21 @@ TimeRow.propTypes = {
   displays: PropTypes.array.isRequired,
   id: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
+  sync: PropTypes.string.isRequired,
   update: PropTypes.func.isRequired
 };
+
+const mapStateToProps = (state) => {
+  return {
+    displays: state.displays
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  update: (display) => {
+    dispatch(updateDisplay(display));
+  }
+});
 
 export default connect(
   mapStateToProps,
