@@ -12,13 +12,12 @@ class Carousel extends Component {
   position = 0;
   scrollView = null;
 
-  onScroll(e) {
+  onScrollEnd = (e) => {
     // sets scroll index
-    console.log(this.position);
     this.position = Math.round(
       e.nativeEvent.contentOffset.x / getDimensions().width
     );
-  }
+  };
 
   onLayout = () => {
     // forces re-render to calculate new position
@@ -42,13 +41,13 @@ class Carousel extends Component {
           contentContainerStyle={style}
           horizontal={true}
           onContentSizeChange={this.onLayout}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { x: this.offsetX } } }],
-            { listener: (e) => this.onScroll(e) }
-          )}
+          onMomentumScrollEnd={this.onScrollEnd}
+          onScroll={Animated.event([
+            { nativeEvent: { contentOffset: { x: this.offsetX } } }
+          ])}
+          pagingEnabled={true}
           ref={(scrollView) => (this.scrollView = scrollView)}
-          scrollEventThrottle={16}
-          pagingEnabled={true}>
+          scrollEventThrottle={16}>
           {children}
         </ScrollView>
 

@@ -1,16 +1,19 @@
 export const baseStyles = {
   container: {
     flex: 1,
-    height: '50%',
+    height: '45%',
+    paddingLeft: 25,
+    paddingRight: 25,
     width: '100%'
   },
   header: {
     alignItems: 'center',
     justifyContent: 'center',
+    height: 20,
     left: 0,
     position: 'absolute',
     right: 0,
-    top: 10,
+    top: -10,
     zIndex: 1
   },
   label: {
@@ -27,7 +30,6 @@ export const baseStyles = {
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
-    margin: 20
+    justifyContent: 'center'
   }
 };
