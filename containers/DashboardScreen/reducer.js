@@ -3,13 +3,14 @@ import {
   RED,
   YELLOW,
   OUT_OF_SYNC,
-  IN_SYNC
+  IN_SYNC,
+  SYNCING
 } from '../../helpers/constants';
 import { EDIT_DISPLAY } from '../TimeRow/actions';
 
 const defaultState = [
   { id: 0, label: 'last time departed', color: GREEN, sync: IN_SYNC },
-  { id: 1, label: 'present time', color: YELLOW, sync: OUT_OF_SYNC },
+  { id: 1, label: 'present time', color: YELLOW, sync: SYNCING },
   { id: 2, label: 'destination time', color: RED, sync: OUT_OF_SYNC }
 ];
 

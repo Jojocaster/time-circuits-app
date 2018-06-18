@@ -13,3 +13,9 @@ export const [OUT_OF_SYNC, SYNCING, IN_SYNC] = [
   'SYNCING ...',
   'IN SYNC'
 ];
+
+export const SYNC_COLORS = {
+  [OUT_OF_SYNC]: RED,
+  [SYNCING]: YELLOW,
+  [IN_SYNC]: GREEN
+};

@@ -1,7 +1,7 @@
 export const baseStyles = {
   container: {
     flex: 1,
-    height: '45%',
+    height: '50%',
     paddingLeft: 25,
     paddingRight: 25,
     width: '100%'
@@ -13,7 +13,7 @@ export const baseStyles = {
     left: 0,
     position: 'absolute',
     right: 0,
-    top: -10,
+    top: 10,
     zIndex: 1
   },
   label: {
@@ -30,6 +30,8 @@ export const baseStyles = {
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 20,
+    marginBottom: 20
   }
 };
