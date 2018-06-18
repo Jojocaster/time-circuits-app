@@ -6,20 +6,47 @@ import CarouselIndicator from '../CarouselIndicator';
 import { getDimensions } from '../../helpers/helpers';
 
 class Carousel extends Component {
+  state = { width: getDimensions().width };
+
   offsetX = new Animated.Value(0);
+  position = 0;
+  scrollView = null;
+
+  onScroll(e) {
+    // sets scroll index
+    console.log(this.position);
+    this.position = Math.round(
+      e.nativeEvent.contentOffset.x / getDimensions().width
+    );
+  }
+
+  onLayout = () => {
+    // forces re-render to calculate new position
+    this.setState({ width: getDimensions().width });
+    // retains scroll position after rotation
+    if (this.scrollView) {
+      this.scrollView.scrollTo({
+        x: this.position * getDimensions().width,
+        animated: false
+      });
+    }
+  };
 
   render() {
     const { children, pagination, style } = this.props;
-    let position = Animated.divide(this.offsetX, getDimensions().width);
+    let position = Animated.divide(this.offsetX, this.state.width);
 
     return (
       <View style={{ flex: 1 }}>
         <ScrollView
           contentContainerStyle={style}
           horizontal={true}
-          onScroll={Animated.event([
-            { nativeEvent: { contentOffset: { x: this.offsetX } } }
-          ])}
+          onContentSizeChange={this.onLayout}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: this.offsetX } } }],
+            { listener: (e) => this.onScroll(e) }
+          )}
+          ref={(scrollView) => (this.scrollView = scrollView)}
           scrollEventThrottle={16}
           pagingEnabled={true}>
           {children}
