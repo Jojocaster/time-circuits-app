@@ -32,6 +32,6 @@ export const baseStyles = {
     flexWrap: 'wrap',
     justifyContent: 'center',
     marginTop: 20,
-    marginBottom: 20
+    marginBottom: 10
   }
 };

@@ -10,7 +10,7 @@ export const baseStyles = {
     color: 'white',
     fontSize: 14,
     fontWeight: 'bold',
-    margin: 5,
+    padding: 2,
     textAlign: 'center',
     width: '100%'
   }

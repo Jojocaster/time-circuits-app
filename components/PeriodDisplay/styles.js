@@ -9,7 +9,6 @@ export const landscapeStyles = StyleSheet.create({
   ...baseStyles,
   container: {
     ...baseStyles.container,
-    padding: 5,
     width: '16%'
   }
 });
