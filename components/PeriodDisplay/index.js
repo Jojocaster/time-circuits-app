@@ -2,12 +2,20 @@ import React, { Component } from 'react';
 import { View, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { styles } from './styles';
-import { AM, PM } from '../../helpers/constants';
+import { AM, PM, ORIENTATION } from '../../helpers/constants';
+import { getOrientation } from '../../helpers/helpers';
+
+import { landscapeStyles, portraitStyles } from './styles';
 
 class PeriodDisplay extends Component {
+  state = { orientation: getOrientation() };
+
   amValue = new Animated.Value(this.props.value === AM ? 1 : 0);
   pmValue = new Animated.Value(this.props.value === PM ? 1 : 0);
+
+  onLayout = () => {
+    this.setState({ orientation: getOrientation() });
+  };
 
   update(val) {
     this.props.onUpdate(val);
@@ -26,46 +34,33 @@ class PeriodDisplay extends Component {
   }
 
   render() {
+    const style =
+      this.state.orientation === ORIENTATION.LANDSCAPE
+        ? landscapeStyles
+        : portraitStyles;
+    const opacityRange = { inputRange: [0, 1], outputRange: [0.4, 1] };
+    const scaleRange = { inputRange: [0, 1], outputRange: [0.9, 1] };
+
     const amStyle = {
-      opacity: this.amValue.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0.4, 1]
-      }),
-      transform: [
-        {
-          scale: this.amValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0.9, 1]
-          })
-        }
-      ]
+      opacity: this.amValue.interpolate(opacityRange),
+      transform: [{ scale: this.amValue.interpolate(scaleRange) }]
     };
 
     const pmStyle = {
-      opacity: this.pmValue.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0.4, 1]
-      }),
-      transform: [
-        {
-          scale: this.pmValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0.9, 1]
-          })
-        }
-      ]
+      opacity: this.pmValue.interpolate(opacityRange),
+      transform: [{ scale: this.pmValue.interpolate(scaleRange) }]
     };
 
     return (
-      <View style={styles.container}>
+      <View style={style.container} onLayout={this.onLayout}>
         <Animated.Text
           onPress={() => this.update(AM)}
-          style={[styles.label, amStyle]}>
+          style={[style.label, amStyle]}>
           AM
         </Animated.Text>
         <Animated.Text
           onPress={() => this.update(PM)}
-          style={[styles.label, pmStyle]}>
+          style={[style.label, pmStyle]}>
           PM
         </Animated.Text>
       </View>

@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   status: {
     backgroundColor: 'white',
-    borderRadius: 5,
+    borderRadius: 50,
     height: 8,
     width: 8
   },

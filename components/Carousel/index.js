@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Animated } from 'react-native';
+import { Animated, ScrollView, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import CarouselIndicator from '../CarouselIndicator';
@@ -40,6 +40,7 @@ class Carousel extends Component {
         <ScrollView
           contentContainerStyle={style}
           horizontal={true}
+          showsHorizontalScrollIndicator={false}
           onContentSizeChange={this.onLayout}
           onMomentumScrollEnd={this.onScrollEnd}
           onScroll={Animated.event([

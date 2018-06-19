@@ -1,19 +1,15 @@
 import { StyleSheet } from 'react-native';
+import { baseStyles } from './styles.base';
 
-export const styles = StyleSheet.create({
+export const portraitStyles = StyleSheet.create({
+  ...baseStyles
+});
+
+export const landscapeStyles = StyleSheet.create({
+  ...baseStyles,
   container: {
-    alignContent: 'center',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    padding: 10,
-    width: '33%'
-  },
-  label: {
-    color: 'white',
-    fontSize: 14,
-    fontWeight: 'bold',
-    margin: 5,
-    textAlign: 'center',
-    width: '100%'
+    ...baseStyles.container,
+    padding: 5,
+    width: '16%'
   }
 });
